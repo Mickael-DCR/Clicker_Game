@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa2234bdf15ce2438033845da3d3a85, type: 3}
-  m_Name: Carts
+  m_Script: {fileID: 11500000, guid: 42bb48cb384ce0d45b40628ee3b579ea, type: 3}
+  m_Name: Iron Ore Mountain
   m_EditorClassIdentifier: 
-  itemName: Carts
-  autoClick: 1
-  upgradePower: 1
-  upgradeType: 0
-  numberOfItems: 0
-  maxNumberOfItems: 5000
-  description: Increases the amount of ores/sec by 1.
+  ResourceName: Iron Ore Mountain
+  AmountOnKill: 100
+  ResourceHP: 150
+  Rarity: 2

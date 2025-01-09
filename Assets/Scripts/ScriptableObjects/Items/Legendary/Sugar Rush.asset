@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fa2234bdf15ce2438033845da3d3a85, type: 3}
-  m_Name: Pickaxe
+  m_Name: Sugar Rush
   m_EditorClassIdentifier: 
-  ItemName: Pickaxe
-  Icon: {fileID: 21300000, guid: ea8221165636b6a45af3a5730b6e1c0f, type: 3}
-  AutoClick: 0
-  UpgradePower: 1
+  ItemName: Sugar Rush
+  Icon: {fileID: 0}
+  AutoClick: 1
+  UpgradePower: 5
   UpgradeType: 0
-  Description: Increases by 1 the amount of Ores gathered with a single click.
-  Price: 10
-  ResourceType: 0
+  Description: Give sugar to your workers, increasing every income from automatic
+    sources by 5.
+  Price: 200
+  ResourceType: 4
+  Rarity: 3

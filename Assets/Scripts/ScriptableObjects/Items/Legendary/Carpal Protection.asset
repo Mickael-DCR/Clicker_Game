@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fa2234bdf15ce2438033845da3d3a85, type: 3}
-  m_Name: Water Bucket
+  m_Name: Carpal Protection
   m_EditorClassIdentifier: 
-  itemName: Water Bucket
-  autoClick: 0
-  upgradePower: 0.1
-  upgradeType: 1
-  numberOfItems: 0
-  maxNumberOfItems: 1000
-  description: Increases the Quality of your swords, they sell for 20% more.
+  ItemName: Carpal Protection IV
+  Icon: {fileID: 0}
+  AutoClick: 0
+  UpgradePower: 5
+  UpgradeType: 0
+  Description: Protects your from carpal tunnel syndrome, increases every income
+    from clicks by 5.
+  Price: 100
+  ResourceType: 4
+  Rarity: 3

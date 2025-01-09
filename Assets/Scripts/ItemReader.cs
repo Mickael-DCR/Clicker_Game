@@ -3,6 +3,8 @@ using TMPro;
 using UnityEngine.UI;
 public class ItemReader : MonoBehaviour
 {
+    [SerializeField]private Item _item;
+    
     [Header("Display Settings")]
     [SerializeField]private Image _iconOfItems;
     [SerializeField]private TextMeshProUGUI _nameOfItems;
@@ -10,7 +12,6 @@ public class ItemReader : MonoBehaviour
     [SerializeField]private int _numberOfItems;
     [SerializeField]private TextMeshProUGUI _DescriptionOfItems;
     [SerializeField]private TextMeshProUGUI _buttonText;
-    [SerializeField]private Item _item;
     
     [Header("Button Settings")]
     [SerializeField] private int _price;
@@ -48,7 +49,7 @@ public class ItemReader : MonoBehaviour
 
     private void RefreshItemDisplay()
     {
-        _numberOfItemsText.text = "x" +_numberOfItems.ToString("x0");
+        _numberOfItemsText.text = "x" +_numberOfItems.ToString();
         _buttonText.text = _price.ToString();
     }
     //Manages the purchase/upgrade of items in the shop
@@ -56,8 +57,25 @@ public class ItemReader : MonoBehaviour
     {
         //Remove the money
         ResourceManager.Instance.UpdateMoney(-_price);
+        // adds +1 item
         _numberOfItems ++;
-        _price += _item.Price * _numberOfItems;
+        // increment price depending on rarity
+        switch (_item.Rarity)
+        {
+            case Rarity.Common:
+                _price += _item.Price * _numberOfItems * 9/7;
+                break;
+            case Rarity.Uncommon:
+                _price += _item.Price * _numberOfItems * 12/7;
+                break;
+            case Rarity.Rare:
+                _price += _item.Price * _numberOfItems * 3;
+                break;
+            case Rarity.Legendary:
+                _price += _item.Price * _numberOfItems * 7;
+                break;
+        }
+        
         //Display item
         RefreshItemDisplay();
         if (_isFirstPurchase)

@@ -150,7 +150,9 @@ public class ResourceManager : MonoBehaviour
         if (increase < 0)
             _ironOre += increase;
         //Player click
-        else _ironOre += (_ironOreIncrease + _clickPower)*_clickPowerMultiplier;
+        else 
+            _ironOre += ((increase * _clickPower)+_ironOreIncrease)*_clickPowerMultiplier;
+        
         //Updates display
         _ironOreCounter.text = "Iron ore : " + _ironOre.ToString("0");
     }

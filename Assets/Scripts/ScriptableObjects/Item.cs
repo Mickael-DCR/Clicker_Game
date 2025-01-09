@@ -13,4 +13,5 @@ public class Item : ScriptableObject
     public string Description;
     public int Price;
     public TypeOfResource ResourceType;
+    public Rarity Rarity;
 }
