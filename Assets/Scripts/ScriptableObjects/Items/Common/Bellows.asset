@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Bellows
   m_EditorClassIdentifier: 
   ItemName: Bellows
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: b9f7ff4d387e00645b68cec7615b88b4, type: 3}
   AutoClick: 0
   UpgradePower: 2
   UpgradeType: 0
   Description: Increases by 2 the amount of Ores smelted with a single click.
   Price: 25
   ResourceType: 1
+  Rarity: 0

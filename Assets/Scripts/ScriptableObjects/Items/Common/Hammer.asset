@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hammer
   m_EditorClassIdentifier: 
   ItemName: Hammer
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 73d64d5b1d2bd4d4fbe9458b45643c29, type: 3}
   AutoClick: 0
   UpgradePower: 2
   UpgradeType: 0

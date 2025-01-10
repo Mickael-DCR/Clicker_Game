@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 public class ItemReader : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class ItemReader : MonoBehaviour
     [SerializeField]private TextMeshProUGUI _nameOfItems;
     [SerializeField]private TextMeshProUGUI _numberOfItemsText;
     [SerializeField]private int _numberOfItems;
-    [SerializeField]private TextMeshProUGUI _DescriptionOfItems;
+    [SerializeField]private TextMeshProUGUI _descriptionOfItems;
     [SerializeField]private TextMeshProUGUI _buttonText;
     
     [Header("Button Settings")]
@@ -30,7 +31,7 @@ public class ItemReader : MonoBehaviour
         _nameOfItems.text= _item.ItemName;
         _numberOfItems =0;
         _numberOfItemsText.text = "x" +_numberOfItems.ToString("0");
-        _DescriptionOfItems.text = _item.Description;
+        _descriptionOfItems.text = _item.Description;
         _buttonText.text = _price.ToString();
     }
     
@@ -80,7 +81,28 @@ public class ItemReader : MonoBehaviour
         RefreshItemDisplay();
         if (_isFirstPurchase)
         {
-            _itemImage.color = new Color(1f, 1f, 1f, 1f);
+            if (_item.AutoClick)
+            {
+                switch (_item.ResourceType)
+                {
+                    case TypeOfResource.IronOre:
+                        ResourceManager.Instance.AutoIronOre = true;
+                        break;
+                    case TypeOfResource.Iron:
+                        ResourceManager.Instance.AutoIron = true;
+                        break;
+                    case TypeOfResource.Sword:
+                        ResourceManager.Instance.AutoSword = true;
+                        break;
+                    case TypeOfResource.Money:
+                        ResourceManager.Instance.AutoMoney = true;
+                        break;
+                }
+            }
+            else
+            {
+                _itemImage.color = new Color(1f, 1f, 1f, 1f);
+            }
             _isFirstPurchase = false;
         }
         
@@ -90,54 +112,117 @@ public class ItemReader : MonoBehaviour
         switch (_item.ResourceType)
             {
                 case TypeOfResource.IronOre:
-                    if (_item.UpgradeType == TypeOfUpgrade.Incremental)
-                    {
-                        ResourceManager.Instance.SetIronOreIncrease(ResourceManager.Instance.GetIronOreIncrease() +
-                                                                    _item.UpgradePower);
+                    if(_item.AutoClick){
+                        if (_item.UpgradeType == TypeOfUpgrade.Incremental)
+                        {
+                            ResourceManager.Instance.SetAutoIronOreIncrease(ResourceManager.Instance.GetAutoIronOreIncrease() +
+                                                                        _item.UpgradePower);
+                        }
+                        else
+                        {
+                            ResourceManager.Instance.SetAutoIronOreIncrease(ResourceManager.Instance.GetAutoIronOreIncrease() *
+                                                                        _item.UpgradePower);
+                        }
                     }
                     else
                     {
-                        ResourceManager.Instance.SetIronOreIncrease(ResourceManager.Instance.GetIronOreIncrease() *
-                                                                    _item.UpgradePower);
+                        if (_item.UpgradeType == TypeOfUpgrade.Incremental)
+                        {
+                            ResourceManager.Instance.SetIronOreIncrease(ResourceManager.Instance.GetIronOreIncrease() +
+                                                                        _item.UpgradePower);
+                        }
+                        else
+                        {
+                            ResourceManager.Instance.SetIronOreIncrease(ResourceManager.Instance.GetIronOreIncrease() *
+                                                                        _item.UpgradePower);
+                        }
                     }
 
                     break;
                 case TypeOfResource.Iron:
-                    if (_item.UpgradeType == TypeOfUpgrade.Incremental)
+                    if (_item.AutoClick)
                     {
-                        ResourceManager.Instance.SetIronIncrease(ResourceManager.Instance.GetIronIncrease() +
-                                                                 _item.UpgradePower);
+                        if (_item.UpgradeType == TypeOfUpgrade.Incremental)
+                        {
+                            ResourceManager.Instance.SetAutoIronIncrease(ResourceManager.Instance.GetAutoIronIncrease() +
+                                                                     _item.UpgradePower);
+                        }
+                        else
+                        {
+                            ResourceManager.Instance.SetAutoIronIncrease(ResourceManager.Instance.GetAutoIronIncrease() *
+                                                                     _item.UpgradePower);
+                        }
                     }
                     else
                     {
-                        ResourceManager.Instance.SetIronIncrease(ResourceManager.Instance.GetIronIncrease() *
-                                                                 _item.UpgradePower);
+                        if (_item.UpgradeType == TypeOfUpgrade.Incremental)
+                        {
+                            ResourceManager.Instance.SetIronIncrease(ResourceManager.Instance.GetIronIncrease() +
+                                                                     _item.UpgradePower);
+                        }
+                        else
+                        {
+                            ResourceManager.Instance.SetIronIncrease(ResourceManager.Instance.GetIronIncrease() *
+                                                                     _item.UpgradePower);
+                        }
                     }
 
                     break;
                 case TypeOfResource.Sword:
-                    if (_item.UpgradeType == TypeOfUpgrade.Incremental)
+                    if (_item.AutoClick)
                     {
-                        ResourceManager.Instance.SetSwordIncrease(ResourceManager.Instance.GetSwordIncrease() +
-                                                                  _item.UpgradePower);
+                        if (_item.UpgradeType == TypeOfUpgrade.Incremental)
+                        {
+                            ResourceManager.Instance.SetAutoSwordIncrease(ResourceManager.Instance.GetAutoSwordIncrease() +
+                                                                      _item.UpgradePower);
+                        }
+                        else
+                        {
+                            ResourceManager.Instance.SetAutoSwordIncrease(ResourceManager.Instance.GetAutoSwordIncrease() *
+                                                                      _item.UpgradePower);
+                        }
                     }
                     else
                     {
-                        ResourceManager.Instance.SetSwordIncrease(ResourceManager.Instance.GetSwordIncrease() *
-                                                                  _item.UpgradePower);
+                        if (_item.UpgradeType == TypeOfUpgrade.Incremental)
+                        {
+                            ResourceManager.Instance.SetSwordIncrease(ResourceManager.Instance.GetSwordIncrease() +
+                                                                      _item.UpgradePower);
+                        }
+                        else
+                        {
+                            ResourceManager.Instance.SetSwordIncrease(ResourceManager.Instance.GetSwordIncrease() *
+                                                                      _item.UpgradePower);
+                        }
                     }
 
                     break;
                 case TypeOfResource.Money:
-                    if (_item.UpgradeType == TypeOfUpgrade.Incremental)
+                    if (_item.AutoClick)
                     {
-                        ResourceManager.Instance.SetMoneyIncrease(ResourceManager.Instance.GetMoneyIncrease() +
-                                                                  _item.UpgradePower);
+                        if (_item.UpgradeType == TypeOfUpgrade.Incremental)
+                        {
+                            ResourceManager.Instance.SetAutoMoneyIncrease(ResourceManager.Instance.GetAutoMoneyIncrease() +
+                                                                      _item.UpgradePower);
+                        }
+                        else
+                        {
+                            ResourceManager.Instance.SetAutoMoneyIncrease(ResourceManager.Instance.GetAutoMoneyIncrease() *
+                                                                      _item.UpgradePower);
+                        }
                     }
                     else
                     {
-                        ResourceManager.Instance.SetMoneyIncrease(ResourceManager.Instance.GetMoneyIncrease() *
-                                                                  _item.UpgradePower);
+                        if (_item.UpgradeType == TypeOfUpgrade.Incremental)
+                        {
+                            ResourceManager.Instance.SetMoneyIncrease(ResourceManager.Instance.GetMoneyIncrease() +
+                                                                      _item.UpgradePower);
+                        }
+                        else
+                        {
+                            ResourceManager.Instance.SetMoneyIncrease(ResourceManager.Instance.GetMoneyIncrease() *
+                                                                      _item.UpgradePower);
+                        }
                     }
                     break;
                 case TypeOfResource.All :

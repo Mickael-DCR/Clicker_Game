@@ -22,6 +22,10 @@ public class ResourceManager : MonoBehaviour
     [SerializeField] private int _ironIncrease;
     [SerializeField] private int _swordIncrease;
     [SerializeField] private int _moneyIncrease;
+    [SerializeField] private int _autoIronOreIncrease;
+    [SerializeField] private int _autoIronIncrease;
+    [SerializeField] private int _autoSwordIncrease;
+    [SerializeField] private int _autoMoneyIncrease;
     [Header("Activate Auto Clicks")]
     public bool AutoIronOre;
     public bool AutoIron;
@@ -77,6 +81,25 @@ public class ResourceManager : MonoBehaviour
         return _moneyIncrease;
     }
 
+    public int GetAutoIronOreIncrease()
+    {
+        return _autoIronOreIncrease;
+    }
+
+    public int GetAutoIronIncrease()
+    {
+        return _autoIronIncrease;
+    }
+
+    public int GetAutoSwordIncrease()
+    {
+        return _autoSwordIncrease;
+    }
+
+    public int GetAutoMoneyIncrease()
+    {
+        return _autoMoneyIncrease;
+    }
     public int GetClickPower()
     {
         return _clickPower;
@@ -139,6 +162,26 @@ public class ResourceManager : MonoBehaviour
     public void SetMoneyIncrease(int amount)
     {
         _moneyIncrease = amount;
+    }
+    
+    public void SetAutoIronOreIncrease(int amount)
+    {
+        _autoIronOreIncrease = amount;
+    }
+
+    public void SetAutoIronIncrease(int amount)
+    {
+        _autoIronIncrease = amount;
+    }
+
+    public void SetAutoSwordIncrease(int amount)
+    {
+        _autoSwordIncrease = amount;
+    }
+
+    public void SetAutoMoneyIncrease(int amount)
+    {
+        _autoMoneyIncrease = amount;
     }
     
     //Updates IronOre Counter on event

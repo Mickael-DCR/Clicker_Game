@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Jewelry
   m_EditorClassIdentifier: 
   ItemName: Jewelry
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 72496c3a94975624ca87e91ad7d25ec2, type: 3}
   AutoClick: 0
   UpgradePower: 2
   UpgradeType: 0
-  Description: You're more charismatic ; Increases by 2 the amount of Money made
-    with a single click.
+  Description: You're more charismatic. Increases by 2 the amount of Money made with
+    a single click.
   Price: 55
   ResourceType: 3
   Rarity: 0
