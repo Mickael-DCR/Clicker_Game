@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlackSmith Pliers
   m_EditorClassIdentifier: 
   ItemName: Blacksmith's Pliers
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: b709eb4977a76d24c98454eab6bb7070, type: 3}
   AutoClick: 0
   UpgradePower: 2
   UpgradeType: 1

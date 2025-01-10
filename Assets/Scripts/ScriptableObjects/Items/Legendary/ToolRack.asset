@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: ToolRack
   m_EditorClassIdentifier: 
   ItemName: Tool Rack
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 43b1598e8e7dde743a22d6b147690a36, type: 3}
   AutoClick: 0
   UpgradePower: 2
   UpgradeType: 1
-  Description: You get better tools. All CLICKS rewards are MULTIPLIED by 2!
+  Description: You get better tools. All CLICK rewards are MULTIPLIED by 2!
   Price: 2500
   ResourceType: 4
   Rarity: 3

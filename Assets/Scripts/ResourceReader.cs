@@ -13,6 +13,7 @@ public class ResourceReader : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _resourceName;
     [SerializeField] private TextMeshProUGUI _resourceHP;
     [SerializeField] private Image _rarityIndicator;
+    [SerializeField] private Animator _animator;
     private Resource _currentResource;
     private float _currentHP;
     void Start()
@@ -51,7 +52,7 @@ public class ResourceReader : MonoBehaviour
         _currentHP -= ResourceManager.Instance.GetClickPower();
         _resourceHP.text= "HP : "+ _currentHP.ToString("0000") + " / "+_currentResource.ResourceHP.ToString("0000");
         _hpImage.fillAmount = _currentHP / _currentResource.ResourceHP;
-        
+        _animator.SetTrigger("MineClick");
         if( _currentHP <= 0 )
         {
             ResourceManager.Instance.UpdateIronOre(_currentResource.AmountOnKill);

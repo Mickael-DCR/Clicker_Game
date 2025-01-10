@@ -16,3 +16,4 @@ MonoBehaviour:
   AmountOnKill: 100
   ResourceHP: 150
   Rarity: 2
+  Sprite: {fileID: 21300000, guid: e6849801e617f6f489af4d1231c7a475, type: 3}

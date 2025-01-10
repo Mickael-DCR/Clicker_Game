@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Water Bucket
   m_EditorClassIdentifier: 
   ItemName: Water Bucket
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 8434645a0438a30499548f9c8e768c6b, type: 3}
   AutoClick: 0
   UpgradePower: 2
   UpgradeType: 1

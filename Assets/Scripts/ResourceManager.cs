@@ -36,6 +36,10 @@ public class ResourceManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _ironOreCounter;
     [SerializeField] private TextMeshProUGUI _ironCounter;
     [SerializeField] private TextMeshProUGUI _swordCounter;
+    [Header("Animations")]
+    [SerializeField] private Animator _furnaceAnimator;
+    [SerializeField] private Animator _anvilAnimator;
+    [SerializeField] private Animator _shopAnimator;
 
     private void Awake()
     {
@@ -188,14 +192,7 @@ public class ResourceManager : MonoBehaviour
     //
     public void UpdateIronOre(int increase)
     {
-        //Checks if it was trigger by :
-        //Upgrade/Purchase
-        if (increase < 0)
-            _ironOre += increase;
-        //Player click
-        else 
-            _ironOre += ((increase * _clickPower)+_ironOreIncrease)*_clickPowerMultiplier;
-        
+        _ironOre += ((increase * _clickPower)+_ironOreIncrease)*_clickPowerMultiplier;
         //Updates display
         _ironOreCounter.text = "Iron ore : " + _ironOre.ToString("0");
     }
@@ -204,31 +201,24 @@ public class ResourceManager : MonoBehaviour
     //
     public void UpdateIron(int increase)
     {
-        //Checks if it was trigger by :
-        //Upgrade/Purchase
-        if (increase < 0)
-        {
-            _iron += increase;
+        //If player has enough ores to smelt
+        if (_ironOre >= _ironIncrease + _clickPower)
+        {                
+            //increases smelted iron by amount*multiplier (multiplier is free iron)
+            _iron += (_ironIncrease + _clickPower)*_clickPowerMultiplier;
+            //decreases the ore by amount
+            _ironOre -= _ironIncrease + _clickPower;  
+            _furnaceAnimator.SetTrigger("FurnaceClick");
         }
-        //Player click
-        else
+        // if player has less than amount but 1 or more ore(s)
+        else if (_ironOre >= 1 && _ironOre < _ironIncrease + _clickPower)
         {
-            //If player has enough ores to smelt
-            if (_ironOre >= _ironIncrease + _clickPower)
-            {                
-                //increases smelted iron by amount*multiplier (multiplier is free iron)
-                _iron += (_ironIncrease + _clickPower)*_clickPowerMultiplier;
-                //decreases the ore by amount
-                _ironOre -= _ironIncrease + _clickPower;   
-            }
-            // if player has less than amount but 1 or more ore(s)
-            else if (_ironOre >= 1 && _ironOre < _ironIncrease + _clickPower)
-            {
-                //smelts all remaining ores
-                _iron+= _ironOre * _clickPowerMultiplier;
-                _ironOre=0;
-            }
+            //smelts all remaining ores
+            _iron+= _ironOre * _clickPowerMultiplier;
+            _ironOre=0;
+            _furnaceAnimator.SetTrigger("FurnaceClick");
         }
+        
         //Updates display
         _ironCounter.text = "Iron Bars : " + _iron.ToString("0");
         _ironOreCounter.text = "Iron ore : " + _ironOre.ToString("0");
@@ -239,29 +229,24 @@ public class ResourceManager : MonoBehaviour
     //
     public void UpdateSword(int increase)
     {
-        //Checks if it was trigger by :
-        //Upgrade/Purchase
-        if (increase < 0)
-            _sword += increase;
-        //Player click
-        else
-        {
-            //If player has enough ores to smelt
-            if (_iron >= _swordIncrease + _clickPower)
-            {                
-                //increases smelted iron by amount*multiplier (multiplier is free iron)
-                _sword += _swordIncrease + _clickPower*_clickPowerMultiplier;
-                //decreases the ore by amount
-                _iron -= _swordIncrease + _clickPower;   
-            }
-            // if player has less than amount but 1 or more ore(s)
-            else if (_iron >= 1 && _iron < _swordIncrease + _clickPower)
-            {
-                //smelts all remaining ores
-                _sword+= _iron * _clickPowerMultiplier;
-                _iron=0;
-            }
+        //If player has enough ores to smelt
+        if (_iron >= _swordIncrease + _clickPower)
+        {                
+            //increases smelted iron by amount*multiplier (multiplier is free iron)
+            _sword += _swordIncrease + _clickPower*_clickPowerMultiplier;
+            //decreases the ore by amount
+            _iron -= _swordIncrease + _clickPower;   
+            _anvilAnimator.SetTrigger("AnvilClick");
         }
+        // if player has less than amount but 1 or more ore(s)
+        else if (_iron >= 1 && _iron < _swordIncrease + _clickPower)
+        {
+            //smelts all remaining ores
+            _sword+= _iron * _clickPowerMultiplier;
+            _iron=0;
+            _anvilAnimator.SetTrigger("AnvilClick");
+        }
+        
         //Updates display
         _swordCounter.text = "Swords : " + _sword.ToString("0");
         _ironCounter.text = "Iron Bars : " + _iron.ToString("0");
@@ -270,29 +255,24 @@ public class ResourceManager : MonoBehaviour
     //
     public void UpdateMoney(int increase)
     {
-        //Checks if it was trigger by :
-        //Upgrade/Purchase
-        if (increase < 0)
-            _money += increase;
-        //Player click
-        else
-        {
-            //If player has enough swords to sell
-            if (_sword >= _moneyIncrease + _clickPower)
-            {                
-                //increases smelted iron by amount*multiplier (multiplier is free money)
-                _money += _moneyIncrease + _clickPower*_clickPowerMultiplier;
-                //decreases the ore by amount
-                _sword -= _moneyIncrease + _clickPower;   
-            }
-            // if player has less than amount but 1 or more ore(s)
-            else if (_sword >= 1 && _sword < _moneyIncrease + _clickPower)
-            {
-                //smelts all remaining ores
-                _money+= _sword * _clickPowerMultiplier;
-                _sword=0;
-            }
+        //If player has enough swords to sell
+        if (_sword >= _moneyIncrease + _clickPower)
+        {                
+            //increases smelted iron by amount*multiplier (multiplier is free money)
+            _money += _moneyIncrease + _clickPower*_clickPowerMultiplier;
+            //decreases the ore by amount
+            _sword -= _moneyIncrease + _clickPower;   
+            _shopAnimator.SetTrigger("ShopClick");
         }
+        // if player has less than amount but 1 or more ore(s)
+        else if (_sword >= 1 && _sword < _moneyIncrease + _clickPower)
+        {
+            //smelts all remaining ores
+            _money+= _sword * _clickPowerMultiplier;
+            _sword=0;
+            _shopAnimator.SetTrigger("ShopClick");
+        }
+        
         //Updates display
         _moneyCounter.text = "Money : " + _money.ToString("0");
         _swordCounter.text = "Swords : " + _sword.ToString("0");

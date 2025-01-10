@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Assistant
   m_EditorClassIdentifier: 
   ItemName: Assistant
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 1232ca4534ddfe8448d93f94815df2d1, type: 3}
   AutoClick: 1
   UpgradePower: 1
   UpgradeType: 0

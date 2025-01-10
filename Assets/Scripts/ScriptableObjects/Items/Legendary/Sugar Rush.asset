@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sugar Rush
   m_EditorClassIdentifier: 
   ItemName: Sugar Rush
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 8e005c3bf82209948a3ed439d099d352, type: 3}
   AutoClick: 1
   UpgradePower: 5
   UpgradeType: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Automated Furnace
   m_EditorClassIdentifier: 
   ItemName: Automated Furnace
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 0aad5be74f2e960488cf700c2fae69b3, type: 3}
   AutoClick: 1
   UpgradePower: 1
   UpgradeType: 0
