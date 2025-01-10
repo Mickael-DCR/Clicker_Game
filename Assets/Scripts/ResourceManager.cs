@@ -255,24 +255,30 @@ public class ResourceManager : MonoBehaviour
     //
     public void UpdateMoney(int increase)
     {
-        //If player has enough swords to sell
-        if (_sword >= _moneyIncrease + _clickPower)
-        {                
-            //increases smelted iron by amount*multiplier (multiplier is free money)
-            _money += _moneyIncrease + _clickPower*_clickPowerMultiplier;
-            //decreases the ore by amount
-            _sword -= _moneyIncrease + _clickPower;   
-            _shopAnimator.SetTrigger("ShopClick");
-        }
-        // if player has less than amount but 1 or more ore(s)
-        else if (_sword >= 1 && _sword < _moneyIncrease + _clickPower)
+        if (increase < 0)
         {
-            //smelts all remaining ores
-            _money+= _sword * _clickPowerMultiplier;
-            _sword=0;
-            _shopAnimator.SetTrigger("ShopClick");
+            _money += increase;
         }
-        
+        else
+        {
+            //If player has enough swords to sell
+            if (_sword >= _moneyIncrease + _clickPower)
+            {                
+                //increases smelted iron by amount*multiplier (multiplier is free money)
+                _money += _moneyIncrease + _clickPower*_clickPowerMultiplier;
+                //decreases the ore by amount
+                _sword -= _moneyIncrease + _clickPower;   
+                _shopAnimator.SetTrigger("ShopClick");
+            }
+            // if player has less than amount but 1 or more ore(s)
+            else if (_sword >= 1 && _sword < _moneyIncrease + _clickPower)
+            {
+                //smelts all remaining ores
+                _money+= _sword * _clickPowerMultiplier;
+                _sword=0;
+                _shopAnimator.SetTrigger("ShopClick");
+            }
+        }
         //Updates display
         _moneyCounter.text = "Money : " + _money.ToString("0");
         _swordCounter.text = "Swords : " + _sword.ToString("0");
